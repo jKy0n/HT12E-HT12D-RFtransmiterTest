@@ -140,19 +140,19 @@
 
 
 	void Action0()									// Subrotina "Ação 0"
-	{ 	LED0 = 1;	}								// Acende "LED 0"									
+	{ 	LED0 = !LED0;	}								// Alterna estado de "LED 0"									
 	
 	
 	void Action1()									// Subrotina "Ação 1"
-	{ 	LED1 = 1;	}								// Acende "LED 1"									
+	{ 	LED1 = !LED1;	}							// Alterna estado de "LED 1"									
 	
 	
 	void Action2()									// Subrotina "Ação 2"
-	{ 	LED2 = 1;	}								// Acende "LED 2"									
+	{ 	LED2 = !LED2;	}							// Alterna estado de "LED 2"									
 	
 	
 	void Action3()									// Subrotina "Ação 3"
-	{ 	LED3 = 1;	}								// Acende "LED 3"	
+	{ 	LED3 = !LED3;	}							// Alterna estado de "LED 3"	
 
 
 
