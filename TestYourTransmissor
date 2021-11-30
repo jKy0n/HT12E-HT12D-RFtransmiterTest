@@ -1,0 +1,159 @@
+// =====================================================================================================
+// =====================  ETEC Aristóteles Ferreira - Santos - São Paulo - Brasil  =====================
+// ====================================  Prof.: Silvio C. da Silva  ====================================
+// =================  Aluno/Autor: John Kennedy Loria Segundo - RM: 30247 - Turma 4A3  =================
+// ========================  Teste do controle RF (HT12E / HT12D).c - ver: 1.0  ========================
+// ========================  Data Inicial: 04/12/2016 - Data Final: 05/12/2016  ========================
+// =====================================================================================================
+//
+//
+//
+// Função do programa:
+// Code Function:
+// 
+// 				Testar a recepção das variáveis do módulo RF HT12D/HT12E (433MHz)
+//              Test variables reception from RF Module HT12D/HT12E (433MHz)
+//
+//
+// Descrição do programa:
+// Code Description:
+// 				
+// 				Nesse projeto é usado os módulos RF HT12D e HT12E, 4 chaves (que são as variáveis),
+//				e um microcontrolador 8051 (AT89S52).
+//
+//				Ao acionar as chaves do controle (transmissor), o módulo enviará o sinal até o
+//				receptor, aonde o administrará e reenviará ao 8051.
+//
+//				A programação do 8051 vai verificar as variáveis em loop, e quando elas forem 
+//				acionadas, ira acender os LEDs correspondentes.
+//
+//
+// Logical Description:
+// Descrição da lógica:
+// 
+//				Input Variables:
+//				Variáveis de entrada:	Button_0 - Port 0.0
+//										Button_1 - Port 0.1
+//										Button_2 - Port 0.2
+//										Button_3 - Port 0.3
+//
+//				Output Variable:
+//				Variáveis de Saída:		LED0 - Port 2.0
+//										LED1 - Port 2.1
+//										LED2 - Port 2.2
+//										LED3 - Port 2.3
+//
+//				Subroutines:
+//				Subrotinas:				Action0 - void
+//										Action1 - void
+//										Action2 - void
+//										Action3 - void
+//
+//
+// Observação da versão:
+// 
+// 				Este programa foi desenvolvido com a intenção de testar o módulo de transmissão RF
+//				HT12D e HT12E, porém já foi visto sua possivel utilidade prática.
+//
+//
+// Limitações da versão:	
+//			
+//				Esse programa é válido para:
+//				Microcontroladores da familia 8051, fabricante Atmel / Microchip, série AT89S52,
+//				clock 12MHz, compilador MikroC for 8051.
+//				Módulo RF HT12D / HT12E (433MHz), 4 variáveis (16 possibilidades).
+//
+//
+//
+//  -----------------------------------------------------------------------------------------------------
+//									PROGRAMAÇÃO:
+//
+//
+//
+		sbit LED0 at P0_0_bit;						// Declara P0.0 como "LED 0"
+		sbit LED1 at P0_1_bit;						// Declara P0.1 como "LED 1"
+		sbit LED2 at P0_2_bit;						// Declara P0.2 como "LED 2"
+		sbit LED3 at P0_3_bit;						// Declara P0.3 como "LED 3"
+
+		sbit Button_0 at P2_0_bit;					// Declara P2.0 como "Botão 0"
+		sbit Button_1 at P2_1_bit;					// Declara P2.1 como "Botão 1"
+		sbit Button_2 at P2_2_bit;					// Declara P2.2 como "Botão 2"
+		sbit Button_3 at P2_3_bit;					// Declara P2.3 como "Botão 3"
+
+        void Action0(void);							// Cria subrotina "Açao 0"
+        void Action1(void);							// Cria subrotina "Açao 1"
+        void Action2(void);							// Cria subrotina "Açao 2"
+        void Action3(void);							// Cria subrotina "Açao 3"
+
+       
+
+		void main()									// Rotina Principal
+{
+
+	P0 = 0x00;										// Apaga os LEDs do Port0
+	P2 = 0xFF;										// Prepara P2 para ativar em rampa de descida
+
+	while(1)										// Cria Loop infinito de verificações das 
+	{												// variáveis de entrada (Button_X)
+/*
+		if (Button_0 == 0) {  Action0(); }			// Se o "botão 0" foi acionado, executa "Ação 0"
+		else {	LED0 = 0;	}						// Se não foi acionado, apaga "LED 0"
+									
+
+		if (Button_1 == 0) {  Action1(); }			// Se o "botão 1" foi acionado, executa "Ação 1"
+		else {	LED1 = 0;	}						// Se não foi acionado, apaga "LED 1"
+									
+
+		if (Button_2 == 0) {  Action2(); }			// Se o "botão 2" foi acionado, executa "Ação 2"
+		else {	LED2 = 0;	}						// Se não foi acionado, apaga "LED 2"
+									
+
+		if (Button_3 == 0) {  Action3(); }			// Se o "botão 3" foi acionado, executa "Ação 3"
+		else {	LED3 = 0;	}						// Se não foi acionado, apaga "LED 3"
+*/
+
+		switch ( P2 != 0xFF )
+		{
+			case Button_0 == 0 :
+				Action0();	
+				break;
+		
+			case Button_1 == 0 :
+				Action1();	
+				break;
+		
+			case Button_2 == 0 :
+				Action2();	
+				break;
+		
+			case Button_3 == 0 :
+				Action3();	
+				break;
+		
+			default: P0 = 0x00;
+				break;
+		}
+
+	}												// Após fazer a verificação de todos os botões,
+													// reiniciará a mesma indefinidamente
+}
+
+
+	void Action0()									// Subrotina "Ação 0"
+	{ 	LED0 = 1;	}								// Acende "LED 0"									
+	
+	
+	void Action1()									// Subrotina "Ação 1"
+	{ 	LED1 = 1;	}								// Acende "LED 1"									
+	
+	
+	void Action2()									// Subrotina "Ação 2"
+	{ 	LED2 = 1;	}								// Acende "LED 2"									
+	
+	
+	void Action3()									// Subrotina "Ação 3"
+	{ 	LED3 = 1;	}								// Acende "LED 3"	
+
+
+
+													// Fim do programa =)
