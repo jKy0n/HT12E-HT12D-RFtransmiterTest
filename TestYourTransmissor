@@ -27,6 +27,8 @@
 //				A programação do 8051 vai verificar as variáveis em loop, e quando elas forem 
 //				acionadas, ira acender os LEDs correspondentes.
 //
+//				(Sorry, I will translate this soon ^^' )
+//
 //
 // Logical Description:
 // Descrição da lógica:
@@ -51,17 +53,27 @@
 //
 //
 // Observação da versão:
+// Version Observation:
 // 
 // 				Este programa foi desenvolvido com a intenção de testar o módulo de transmissão RF
 //				HT12D e HT12E, porém já foi visto sua possivel utilidade prática.
 //
+//				This Program was developed intended to test RF Module HT12D and HT12E, maybe can 
+//				used for practical propouse.
 //
-// Limitações da versão:	
+// Limitações da versão:
+// Version Limitations:	
 //			
 //				Esse programa é válido para:
 //				Microcontroladores da familia 8051, fabricante Atmel / Microchip, série AT89S52,
 //				clock 12MHz, compilador MikroC for 8051.
 //				Módulo RF HT12D / HT12E (433MHz), 4 variáveis (16 possibilidades).
+//
+//				This code é valid for:
+//				Microcontrollers 8051 family by Atmel (AT89S52)
+//				Xtal: 12MHz - Clock 1MHz
+//				Compiler tested: MikroC for 8051
+//				Modules: HT12D / HT12E (433MHz), 4 Variables (16 possibilites).
 //
 //
 //
